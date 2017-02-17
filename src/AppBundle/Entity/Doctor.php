@@ -2,8 +2,10 @@
 
 namespace AppBundle\Entity;
 
-
-class Hospital
+/**
+ * Represents a doctor entity
+ */
+class Doctor
 {
     /** @var int */
     private $id;
@@ -25,7 +27,7 @@ class Hospital
     /**
      * @param Patient[]|array $patients
      *
-     * @return $this
+     * @return Doctor
      */
     public function setPatients(array $patients)
     {
@@ -42,7 +44,7 @@ class Hospital
     public function addPatient(Patient $patient)
     {
         $this->patients[] = $patient;
-        $patient->setHospital($this);
+        $patient->setDoctor($this);
 
         return $this;
     }
@@ -55,13 +57,13 @@ class Hospital
     public function removePatient(Patient $patient)
     {
         $this->patients = array_diff($this->patients, [$patient]);
-        $patient->setHospital();
+        $patient->setDoctor();
 
         return $this;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -69,9 +71,9 @@ class Hospital
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      *
-     * @return Hospital
+     * @return $this
      */
     public function setId($id)
     {
@@ -81,7 +83,7 @@ class Hospital
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -89,9 +91,9 @@ class Hospital
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      *
-     * @return Hospital
+     * @return $this
      */
     public function setName($name)
     {

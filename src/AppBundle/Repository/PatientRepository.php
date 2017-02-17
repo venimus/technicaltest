@@ -2,20 +2,51 @@
 
 namespace AppBundle\Repository;
 
-
+use AppBundle\Entity\Doctor;
+use AppBundle\Entity\Hospital;
 use AppBundle\Entity\Patient;
 
 class PatientRepository implements RepositoryInterface
 {
-	/** @return Patient */
-	public function selectById($id)
-	{
-		// TODO: Implement selectById() method.
-	}
+    /**
+     * @param int $id
+     *
+     * @return Patient
+     */
+    public function selectById($id)
+    {
+        return null;
+    }
 
-	/**
-	 * @param \AppBundle\Entity\Hospital $hospital
-	 * @return Patient[]
-	 */
-	public function selectByHospital($hospital){}
+    /**
+     * @param Hospital $hospital
+     *
+     * @return Patient[]
+     */
+    public function selectByHospital(Hospital $hospital)
+    {
+        return [];
+    }
+
+    /**
+     * @param Doctor $doctor
+     *
+     * @return Patient[]
+     */
+    public function selectByDoctor(Doctor $doctor)
+    {
+        return [];
+    }
+
+    /**
+     * Persists a new patient
+     *
+     * @param Patient $patient
+     *
+     * @return Patient
+     */
+    public function save(Patient $patient)
+    {
+        return $patient;
+    }
 }

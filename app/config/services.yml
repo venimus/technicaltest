@@ -4,6 +4,32 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.provider.data.demo:
+        class: AppBundle\Provider\DemoDataProvider
+        arguments: ['@service_container']
+
+    app.repository.hospital.demo:
+        class: AppBundle\Repository\Demo\HospitalRepository
+        arguments: ['@app.provider.data.demo']
+    app.repository.docotor.demo:
+        class: AppBundle\Repository\Demo\DoctorRepository
+        arguments: ['@app.provider.data.demo']
+    app.repository.patient.demo:
+        class: AppBundle\Repository\Demo\PatientRepository
+        arguments: ['@app.provider.data.demo']
+
+    app.repository.hospital:
+        class: AppBundle\Repository\HospitalRepository
+    app.repository.docotor:
+        class: AppBundle\Repository\DoctorRepository
+    app.repository.patient:
+        class: AppBundle\Repository\PatientRepository
+
+    hospital_repository:
+        alias: app.repository.hospital.demo
+
+    doctor_repository:
+        alias: app.repository.docotor.demo
+
+    patient_repository:
+        alias: app.repository.patient.demo

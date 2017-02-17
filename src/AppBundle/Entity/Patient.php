@@ -2,113 +2,147 @@
 
 namespace AppBundle\Entity;
 
-
 class Patient
 {
-	const GENDER_MALE = 1;
-	const GENDER_FEMALE = 2;
-	const GENDER_OTHER = 3;
+    const GENDER_MALE = 1;
+    const GENDER_FEMALE = 2;
+    const GENDER_OTHER = 3;
 
-	/** @var  int */
-	private $id;
-	/** @var  string */
-	private $name;
-	/** @var  \DateTime */
-	private $dob;
-	/** @var  string */
-	private $gender;
-	/** @var  Hospital */
-	private $hospital;
+    /** @var  int */
+    private $id;
 
-	/**
-	 * @return int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
+    /** @var  string */
+    private $name;
 
-	/**
-	 * @param int $id
-	 * @return Patient
-	 */
-	public function setId($id)
-	{
-		$this->id = $id;
-		return $this;
-	}
+    /** @var  \DateTime */
+    private $dob;
 
-	/**
-	 * @return string
-	 */
-	public function getName()
-	{
-		return $this->name;
-	}
+    /** @var  string */
+    private $gender;
 
-	/**
-	 * @param string $name
-	 * @return Patient
-	 */
-	public function setName($name)
-	{
-		$this->name = $name;
-		return $this;
-	}
+    /** @var  Hospital */
+    private $hospital;
 
-	/**
-	 * @return \DateTime
-	 */
-	public function getDob()
-	{
-		return $this->dob;
-	}
+    /** @var Doctor */
+    private $doctor;
 
-	/**
-	 * @param \DateTime $dob
-	 * @return Patient
-	 */
-	public function setDob($dob)
-	{
-		$this->dob = $dob;
-		return $this;
-	}
+    /**
+     * @return Doctor|null
+     */
+    public function getDoctor()
+    {
+        return $this->doctor;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getGender()
-	{
-		return $this->gender;
-	}
+    /**
+     * @param Doctor|null $doctor
+     *
+     * @return Patient
+     */
+    public function setDoctor($doctor = null)
+    {
+        $this->doctor = $doctor;
 
-	/**
-	 * @param string $gender
-	 * @return Patient
-	 */
-	public function setGender($gender)
-	{
-		$this->gender = $gender;
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * @return Hospital
-	 */
-	public function getHospital()
-	{
-		return $this->hospital;
-	}
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @param Hospital $hospital
-	 * @return Patient
-	 */
-	public function setHospital($hospital)
-	{
-		$this->hospital = $hospital;
-		return $this;
-	}
+    /**
+     * @param int $id
+     *
+     * @return Patient
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
 
+        return $this;
+    }
 
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return Patient
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDob()
+    {
+        return $this->dob;
+    }
+
+    /**
+     * @param \DateTime $dob
+     *
+     * @return Patient
+     */
+    public function setDob($dob)
+    {
+        $this->dob = $dob;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string $gender
+     *
+     * @return Patient
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * @return Hospital
+     */
+    public function getHospital()
+    {
+        return $this->hospital;
+    }
+
+    /**
+     * @param Hospital|null $hospital
+     *
+     * @return Patient
+     */
+    public function setHospital($hospital = null)
+    {
+        $this->hospital = $hospital;
+
+        return $this;
+    }
 }
