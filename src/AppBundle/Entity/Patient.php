@@ -2,28 +2,59 @@
 
 namespace AppBundle\Entity;
 
+use JMS\Serializer\Annotation as Serializer;
+
+/**
+ * @Serializer\ExclusionPolicy("all")
+ */
 class Patient
 {
     const GENDER_MALE = 1;
     const GENDER_FEMALE = 2;
     const GENDER_OTHER = 3;
 
-    /** @var  int */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"default"})
+     * @var  int
+     */
     private $id;
 
-    /** @var  string */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"default"})
+     * @var  string
+     */
     private $name;
 
-    /** @var  \DateTime */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"default"})
+     * @var  \DateTime
+     */
     private $dob;
 
-    /** @var  string */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"default"})
+     * @var  string
+     */
     private $gender;
 
-    /** @var  Hospital */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"patient"})
+     *
+     * @var  Hospital
+     */
     private $hospital;
 
-    /** @var Doctor */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"patient"})
+     *
+     * @var Doctor
+     */
     private $doctor;
 
     /**

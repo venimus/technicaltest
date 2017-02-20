@@ -67,7 +67,13 @@ class PatientRepository extends BaseRepository
             }
         );
     }
-
+    /**
+     * @return Patient[]
+     */
+    public function selectAll()
+    {
+        return $this->data;
+    }
     /**
      * Persists a new patient
      *

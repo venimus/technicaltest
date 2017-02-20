@@ -1,3 +1,15 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+patient:
+    type:     rest
+    resource: "@AppBundle/Controller/PatientsController.php"
+
+hospital:
+    type:     rest
+    resource: "@AppBundle/Controller/HospitalController.php"
+
+doctor:
+    type:     rest
+    resource: "@AppBundle/Controller/DoctorController.php"

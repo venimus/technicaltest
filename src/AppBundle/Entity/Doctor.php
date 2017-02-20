@@ -2,18 +2,32 @@
 
 namespace AppBundle\Entity;
 
+use JMS\Serializer\Annotation as Serializer;
+
 /**
- * Represents a doctor entity
+ * @Serializer\ExclusionPolicy("all")
  */
 class Doctor
 {
-    /** @var int */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"default"})
+     * @var int
+     */
     private $id;
 
-    /** @var string */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"default"})
+     * @var string
+     */
     private $name;
 
-    /** @var Patient[]|array */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"doctor"})
+     * @var Patient[]|array
+     */
     private $patients = [];
 
     /**

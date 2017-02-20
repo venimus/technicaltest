@@ -2,16 +2,33 @@
 
 namespace AppBundle\Entity;
 
+use JMS\Serializer\Annotation as Serializer;
 
+/**
+ * @Serializer\ExclusionPolicy("all")
+ */
 class Hospital
 {
-    /** @var int */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"default"})
+     * @var int
+     */
     private $id;
 
-    /** @var string */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"default"})
+     * @var string
+     */
     private $name;
 
-    /** @var Patient[]|array */
+    /**
+     * @Serializer\Expose
+     * @Serializer\Groups({"hospital"})
+     *
+     * @var Patient[]|array
+     */
     private $patients = [];
 
     /**

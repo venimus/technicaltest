@@ -33,3 +33,9 @@ services:
 
     patient_repository:
         alias: app.repository.patient.demo
+
+    demo_param_converter:
+        class: AppBundle\ParamConverter\DemoParamConverter
+        arguments: ['@service_container']
+        tags:
+            - { name: request.param_converter, priority: -2, converter: demo_param_converter }

@@ -2,78 +2,28 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Repository\PatientRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\Doctor;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Routing\ClassResourceInterface;
+use Symfony\Component\HttpFoundation\Response;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
-use AppBundle\Repository\DoctorRepository;
-
-class DoctorController extends Controller
+class DoctorController extends FOSRestController implements ClassResourceInterface
 {
-    /** @var array */
-    protected $data;
-
     /**
-     * @Route(
-     *     "/showdoctorpatients/{doctorId}",
-     *     name="get_doctor_patients",
-     *     requirements={"doctorId": "\d+"}
-     * )
-     * @param Request $request
+     * @param Doctor $doctor
      *
-     * @return JsonResponse
+     * @return Response
      */
-    public function getPatientsAction(Request $request)
+    public function getPatientsAction(Doctor $doctor)
     {
-        $doctorRepository = $this->getDoctorRepository();
-        $doctor = $doctorRepository->selectById((int)$request->get('doctorId'));
-
-        if (null === $doctor) {
-            return new JsonResponse(
-                [
-                    'msg' => 'No doctor information received',
-                ]
-            );
-        }
-
-        $serialized = [];
-        $patients = $this->getPatientRepository()->selectByDoctor($doctor);
-
-        foreach ($patients as $patient) {
-            $serialized[] = [
-                'id' => $patient->getId(),
-                'name' => $patient->getName(),
-            ];
-        }
-
-        return new JsonResponse(
+        $view = $this->view(
             [
-                'patients' => $serialized,
-                'doctor' => [
-                    'id' => $doctor->getId(),
-                    'name' => $doctor->getName(),
-                ],
+                'doctor' => $doctor,
                 'msg' => 'Here are the patients for ' . $doctor->getName(),
             ]
         );
-    }
+        $view->getSerializationContext()->setGroups(['default', 'doctor']);
 
-    /**
-     * @return DoctorRepository
-     */
-    private function getDoctorRepository()
-    {
-        return $this->get('doctor_repository');
-    }
-
-    /**
-     * @return PatientRepository
-     */
-    private function getPatientRepository()
-    {
-        return $this->get('patient_repository');
+        return $this->handleView($view);
     }
 }

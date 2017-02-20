@@ -27,10 +27,14 @@ class DemoDataProvider implements DataProviderInterface
         $patient1 = new Patient();
         $patient1->setId(1);
         $patient1->setName('Demo Patient 1');
+        $patient1->setDob(new \DateTime());
+        $patient1->setGender(Patient::GENDER_MALE);
 
         $patient2 = new Patient();
         $patient2->setId(2);
         $patient2->setName('Demo Patient 2');
+        $patient1->setDob(new \DateTime());
+        $patient1->setGender(Patient::GENDER_FEMALE);
 
         $doctor1 = new Doctor();
         $doctor1->setName('Demo Doctor 1');
